@@ -6,32 +6,23 @@
     <title>Coding Quiz</title>
     <link rel="stylesheet" href="CSS/reset.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" href="CSS/style.css">
+    <link rel="stylesheet" href="CSS/styles.css">
 </head>
 <body>
     <aside class="viewHighscores"><a href="secondPage/highscores.html">View Highscores</a></aside>
-
-    <aside class="timeClock">Time: </aside>
+    <aside class="timeClock">Time: 75</aside>
     
-    <h1 class="header">Coding Quiz Challenge</h1>
+    <h1>Coding Quiz Challenge</h1>
 
     <div>
         <section class="quizBody">Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</section>
-    </div>
-    <center>
-        <div>
-            <button  id="startButton" type="button" class="btn btn-primary">Start Quiz</button>
+        <div class="startBox">
+            <button  id="startButton" type="button" class="beginButton">Start Quiz</button>
         </div>
-    </center>
+        <div class="buttonGrid"></div>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script type="text/javascript">
-        var header = $(".header");
-
-        $("#startButton").on("click", function() {
-            
-        });
-
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

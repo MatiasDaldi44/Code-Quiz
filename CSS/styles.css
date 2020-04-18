@@ -1,0 +1,65 @@
+h1 {
+    font-size: 45px;
+    text-align: center;
+    margin-top: 75px;
+}
+
+.quizBody {
+    text-align: center;
+    font-size: 25px;
+    margin-top: 45px;
+}
+
+.viewHighscores {
+    position: fixed;
+    top: 10px;
+    left: 15px;
+}
+
+.startBox {
+    justify-content: center;
+    display: flex;
+    margin-top: 25px;
+}
+
+.beginButton {
+    border: 1px solid white;
+    border-radius: 5px;
+    background-color: royalblue;
+    color: white;
+    padding: 5px 10px;
+    width: 250px;
+    outline: none;
+}
+
+.timeClock {
+    position: fixed;
+    top: 10px;
+    right: 60px;
+}
+
+.buttonGrid {
+    display: grid;
+    gap: 10px; 
+    margin-top: 15px;
+    justify-content: center;
+}
+
+.answerBtns {
+    border: 1px solid white;
+    border-radius: 5px;
+    background-color: royalblue;
+    color: white;
+    padding: 5px 10px;
+    width: 250px;
+    outline: none;
+}
+
+.beginButton:hover,
+.answerBtns:hover {
+    border-color: black;
+}
+
+.hide {
+    opacity: 0;
+}
