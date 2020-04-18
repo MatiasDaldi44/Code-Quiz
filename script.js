@@ -1,10 +1,25 @@
 var quizBody = document.querySelector(".quizBody")
 var startButton = document.querySelector("#startButton")
 var buttonGrid = document.querySelector(".buttonGrid")
+var timeClock = document.querySelector(".timeClock")
+var secondsLeft = 75;
 
 let questionRandomizer, currentQuestion
 
 startButton.addEventListener("click", startGame)
+
+function setTime() {
+    var timerInterval = setInterval(function() {
+        secondsLeft--;
+        timeClock.textContent = "Time: " + secondsLeft;
+
+        if (secondsLeft === 0) {
+            alert("You Lose")
+            clearInterval(timerInterval)
+            timeClock.textContent = "Time: 0"
+        }
+    }, 1000);
+}
 
 function startGame() {
     startButton.classList.add("hide");
@@ -12,6 +27,7 @@ function startGame() {
     buttonGrid.classList.remove("hide");
     currentQuestion = 0;
     nextQuestion()
+    setTime()
 }
 
 function nextQuestion() {
@@ -32,8 +48,9 @@ function showQuestion(question) {
     });
 }
 
-function selectAnswer() {
-
+function selectAnswer(e) {
+    var selectedButton = e.target
+    var correct = selectedButton.dataset.correct
 }
 
 var questions = [
