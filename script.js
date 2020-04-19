@@ -5,7 +5,7 @@ var timeClock = $("#timeClock")
 var insertScoreDiv = $("#insertScoreDiv")
 var initialsForm = $("#initials-form")
 var initialsInput = $("#initials")
-var secondsLeft = 75;
+var secondsLeft = 10;
 var initials = [];
 var finalScore = [];
 
@@ -23,7 +23,6 @@ function setTime() {
         timeClock.text("Time: " + secondsLeft);
 
         if (secondsLeft === 0) {
-            alert("You Lose")
             clearInterval(timerInterval)
             timeClock.text() = "Time: 0"
         }
@@ -225,6 +224,7 @@ function fifthQuestion() {
         }
         if (value === 4) {
             $("#buttonGrid").empty()
+            timeClock.remove()
             insertScore()
         } else {
             // remove 10 seconds
