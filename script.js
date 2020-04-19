@@ -11,8 +11,6 @@ var finalScore = [];
 
 removePrompt()
 
-init();
-
 startButton.on("click", startGame)
 
 function removePrompt() {
@@ -237,7 +235,7 @@ function fifthQuestion() {
 function insertScore() {
     $("#header").text("All Done!")
     insertScoreDiv.show()
-    var finalScore = secondsLeft.value
+    var finalScore = secondsLeft
     quizBody.text("Your final score is: " + finalScore)
 
     initialsForm.on("submit", function(event) {
@@ -248,19 +246,7 @@ function insertScore() {
         }
         initials.push(initialsText);
         initialsForm.value = "";
-        saveRecord();
+        localStorage.setItem("initials", JSON.stringify(initials));
+        localStorage.setItem("scores", JSON.stringify(finalScore));
     })
-}
-
-function init() {
-    var storedInitials = JSON.parse(localStorage.getItem("initials")); 
-
-    if (storedInitials !== null) {
-        initials = storedInitials;
-    }
-}
-
-function saveRecord() {
-    localStorage.setItem("initials", JSON.stringify(initials));
-    localStorage.setItem("scores", JSON.stringify(finalScore));
 }
