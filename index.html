@@ -10,16 +10,17 @@
 </head>
 <body>
     <aside class="viewHighscores"><a href="secondPage/highscores.html">View Highscores</a></aside>
-    <aside class="timeClock">Time: 75</aside>
+    <aside id="timeClock">Time: 75</aside>
     
-    <h1>Coding Quiz Challenge</h1>
+    <h1 id="header">Coding Quiz Challenge</h1>
 
     <div>
-        <section class="quizBody">Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</section>
+        <section id="quizBody">Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by ten seconds!</section>
         <div class="startBox">
             <button  id="startButton" type="button" class="beginButton">Start Quiz</button>
         </div>
-        <div class="buttonGrid"></div>
+        <div id="buttonGrid"></div>
+        <div id="insertScoreDiv"><form id="initials-form" method="POST"><input type="text" placeholder="Your Initials Here" name="initials" id="initials"></form></div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

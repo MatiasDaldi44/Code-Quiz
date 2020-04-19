@@ -1,102 +1,266 @@
-var quizBody = document.querySelector(".quizBody")
-var startButton = document.querySelector("#startButton")
-var buttonGrid = document.querySelector(".buttonGrid")
-var timeClock = document.querySelector(".timeClock")
+var quizBody = $("#quizBody")
+var startButton = $("#startButton")
+var buttonGrid = $("#buttonGrid")
+var timeClock = $("#timeClock")
+var insertScoreDiv = $("#insertScoreDiv")
+var initialsForm = $("#initials-form")
+var initialsInput = $("#initials")
 var secondsLeft = 75;
+var initials = [];
+var finalScore = [];
 
-let questionRandomizer, currentQuestion
+removePrompt()
 
-startButton.addEventListener("click", startGame)
+init();
+
+startButton.on("click", startGame)
+
+function removePrompt() {
+    insertScoreDiv.hide()
+}
 
 function setTime() {
     var timerInterval = setInterval(function() {
         secondsLeft--;
-        timeClock.textContent = "Time: " + secondsLeft;
+        timeClock.text("Time: " + secondsLeft);
 
         if (secondsLeft === 0) {
             alert("You Lose")
             clearInterval(timerInterval)
-            timeClock.textContent = "Time: 0"
+            timeClock.text() = "Time: 0"
         }
     }, 1000);
 }
 
 function startGame() {
-    startButton.classList.add("hide");
-    questionRandomizer = questions.sort(() => Math.random() - .5);
-    buttonGrid.classList.remove("hide");
-    currentQuestion = 0;
-    nextQuestion()
     setTime()
-}
-
-function nextQuestion() {
-    showQuestion(questionRandomizer[currentQuestion])
-}
-
-function showQuestion(question) {
-    quizBody.innerHTML = question.question
-    question.answers.forEach(answers => {
-        var button = document.createElement("button")
-        button.textContent = answers.text
-        button.classList.add("answerBtns")
-        if (answers.correct) {
-            button.dataset.correct = answers.correct
+    startButton.remove();
+    quizBody.text("Commonly used data types DO NOT include:");
+    var answers = [
+        "Strings", 
+        "Booleans", 
+        "Alerts", 
+        "Numbers"
+    ];
+    for (var i = 0; i < answers.length; i++) {
+        var newButton = $("<button>");
+        newButton.text(answers[i]);
+        newButton.addClass("answerBtns")
+        newButton.attr("dataset", answers[i])
+        $("#buttonGrid").append(newButton)
+    };
+    $(".answerBtns").on("click", function(event) {
+        var value; 
+        switch ( $("button").index(this)) {
+            case 0:
+                value = 1;
+                break;
+            case 1:
+                value = 2;
+                break;
+            case 2:
+                value = 3;
+                break;
+            case 3:
+                value = 4;
+                break;
         }
-        button.addEventListener("click", selectAnswer)
-        buttonGrid.appendChild(button)
-    });
+        if (value === 3) {
+            $("#buttonGrid").empty()
+            secondQuestion()
+        } else {
+            // remove 10 seconds
+        }
+    })
 }
 
-function selectAnswer(e) {
-    var selectedButton = e.target
-    var correct = selectedButton.dataset.correct
+function secondQuestion() {
+    quizBody.text("The condition in an if/else statement is enclosed with _______.");
+    var answers = [
+        "Quotes", 
+        "Curly Brackets", 
+        "Parentheses", 
+        "Square Brackets"
+    ];
+    for (var i = 0; i < answers.length; i++) {
+        var newButton = $("<button>");
+        newButton.text(answers[i]);
+        newButton.addClass("answerBtns")
+        newButton.attr("dataset", answers[i])
+        $("#buttonGrid").append(newButton)
+    };
+    $(".answerBtns").on("click", function(event) {
+        var value; 
+        switch ( $("button").index(this)) {
+            case 0:
+                value = 1;
+                break;
+            case 1:
+                value = 2;
+                break;
+            case 2:
+                value = 3;
+                break;
+            case 3:
+                value = 4;
+                break;
+        }
+        if (value === 3) {
+            $("#buttonGrid").empty()
+            thirdQuestion()
+        } else {
+            // remove 10 seconds
+        }
+    })
 }
 
-var questions = [
-    {
-        question: "Commonly used data types DO NOT include:",
-        answers: [
-            { text: "Strings", correct: false},
-            { text: "Booleans", correct: false},
-            { text: "Alerts", correct: true},
-            { text: "Numbers", correct: false}
-        ]
-    },
-    {
-        question: "The condition in an if/else statement is enclosed with _______.",
-        answers: [
-            { text: "Quotes", correct: false},
-            { text: "Curly Brackets", correct: false},
-            { text: "Parentheses", correct: true},
-            { text: "Square Brackets", correct: false}
-        ]
-    },
-    {
-        question: "Arrays in JavaScript can be used to store ______.",
-        answers: [
-            { text: "Numbers and Strings", correct: false},
-            { text: "Other Arrays", correct: false},
-            { text: "Booleans", correct: false},
-            { text: "All of the above", correct: true}
-        ]
-    },
-    {
-        question: "String values must be enclosed within ______ when being assigned to variables",
-        answers: [
-            { text: "Commas", correct: false},
-            { text: "Curly Brackets", correct: false},
-            { text: "Quotes", correct: true},
-            { text: "Parentheses", correct: false}
-        ]
-    },
-    {
-        question: "A very useful tool used during development and debugging for printing content to the debugger is:",
-        answers: [
-            { text: "JavaScript", correct: false},
-            { text: "Terminal/Bash", correct: false},
-            { text: "For Loops", correct: false},
-            { text: "console.log", correct: true}
-        ]
-    },
-]
+function thirdQuestion() {
+    quizBody.text("Arrays in JavaScript can be used to store _______.");
+    var answers = [
+        "Numbers and Strings", 
+        "Other Arrays", 
+        "Booleans", 
+        "All of the Above"
+    ];
+    for (var i = 0; i < answers.length; i++) {
+        var newButton = $("<button>");
+        newButton.text(answers[i]);
+        newButton.addClass("answerBtns")
+        newButton.attr("dataset", answers[i])
+        $("#buttonGrid").append(newButton)
+    };
+    $(".answerBtns").on("click", function(event) {
+        var value; 
+        switch ( $("button").index(this)) {
+            case 0:
+                value = 1;
+                break;
+            case 1:
+                value = 2;
+                break;
+            case 2:
+                value = 3;
+                break;
+            case 3:
+                value = 4;
+                break;
+        }
+        if (value === 4) {
+            $("#buttonGrid").empty()
+            fourthQuestion()
+        } else {
+            // remove 10 seconds
+        }
+    })
+}
+
+function fourthQuestion() {
+    quizBody.text("String values must be enclosed withing _______ when being assigned to variables.");
+    var answers = [
+        "Commas", 
+        "Curly Brackets", 
+        "Quotes", 
+        "Parentheses"
+    ];
+    for (var i = 0; i < answers.length; i++) {
+        var newButton = $("<button>");
+        newButton.text(answers[i]);
+        newButton.addClass("answerBtns")
+        newButton.attr("dataset", answers[i])
+        $("#buttonGrid").append(newButton)
+    };
+    $(".answerBtns").on("click", function(event) {
+        var value; 
+        switch ( $("button").index(this)) {
+            case 0:
+                value = 1;
+                break;
+            case 1:
+                value = 2;
+                break;
+            case 2:
+                value = 3;
+                break;
+            case 3:
+                value = 4;
+                break;
+        }
+        if (value === 3) {
+            $("#buttonGrid").empty()
+            fifthQuestion()
+        } else {
+            // remove 10 seconds
+        }
+    })
+}
+
+function fifthQuestion() {
+    quizBody.text("A very useful tool used during the development and debuggin for printing content to the debugger is:");
+    var answers = [
+        "JavaScript", 
+        "Terminal/Bash", 
+        "For Loops", 
+        "console.log"
+    ];
+    for (var i = 0; i < answers.length; i++) {
+        var newButton = $("<button>");
+        newButton.text(answers[i]);
+        newButton.addClass("answerBtns")
+        newButton.attr("dataset", answers[i])
+        $("#buttonGrid").append(newButton)
+    };
+    $(".answerBtns").on("click", function(event) {
+        var value; 
+        switch ( $("button").index(this)) {
+            case 0:
+                value = 1;
+                break;
+            case 1:
+                value = 2;
+                break;
+            case 2:
+                value = 3;
+                break;
+            case 3:
+                value = 4;
+                break;
+        }
+        if (value === 4) {
+            $("#buttonGrid").empty()
+            insertScore()
+        } else {
+            // remove 10 seconds
+        }
+    })
+}
+
+function insertScore() {
+    $("#header").text("All Done!")
+    insertScoreDiv.show()
+    var finalScore = secondsLeft.value
+    quizBody.text("Your final score is: " + finalScore)
+
+    initialsForm.on("submit", function(event) {
+        event.preventDefault();
+        var initialsText = initialsForm.value;
+        if (initialsText === "") {
+            return;
+        }
+        initials.push(initialsText);
+        initialsForm.value = "";
+        saveRecord();
+    })
+}
+
+function init() {
+    var storedInitials = JSON.parse(localStorage.getItem("initials")); 
+
+    if (storedInitials !== null) {
+        initials = storedInitials;
+    }
+}
+
+function saveRecord() {
+    localStorage.setItem("initials", JSON.stringify(initials));
+    localStorage.setItem("scores", JSON.stringify(finalScore));
+}
