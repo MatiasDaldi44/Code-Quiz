@@ -5,7 +5,7 @@ var timeClock = $("#timeClock")
 var insertScoreDiv = $("#insertScoreDiv")
 var initialsForm = $("#initials-form")
 var initialsInput = $("#initials")
-var secondsLeft = 10;
+var secondsLeft = 75;
 var initials = [];
 var finalScore = [];
 
